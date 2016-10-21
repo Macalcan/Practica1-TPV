@@ -12,7 +12,7 @@ private:
 	bool initGlobos();
 	void freeGlobos();
 	void render();
-	void onClick(int& pmx, int& pmy);
+	void onClick(int &pmx, int &pmy);
 	void update();
 	bool handle_event();
 	int puntos;

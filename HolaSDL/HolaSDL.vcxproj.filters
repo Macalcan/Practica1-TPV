@@ -24,9 +24,15 @@
     <ClCompile Include="juegoPG.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="GlobosPG.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobosPG.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

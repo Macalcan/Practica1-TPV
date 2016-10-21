@@ -66,11 +66,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GlobosPG.cpp" />
     <ClCompile Include="juegoPG.cpp" />
     <ClCompile Include="mainHola.cpp" />
     <ClCompile Include="mainP1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GlobosPG.h" />
     <ClInclude Include="juegoPG.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
