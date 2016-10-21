@@ -1,9 +1,11 @@
 #pragma once
 #include "SDL.h"
+#include "TexturasSDL.h"
+
 class GlobosPG
 {
 public:
-	GlobosPG();
+	GlobosPG(TexturasSDL* img, int &px, int &py);
 	~GlobosPG();
 private: 
 	void draw(SDL_Renderer* pRenderer);
