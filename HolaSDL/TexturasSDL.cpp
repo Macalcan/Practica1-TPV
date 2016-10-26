@@ -5,9 +5,7 @@ using namespace std;
 
 TexturasSDL::TexturasSDL()
 {
-	
 	SDL_Texture* pTextura = nullptr;
-	const SDL_Rect* winRect = nullptr;
 }
 //--------------------------------------------------------------------------------//
 bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
@@ -31,11 +29,17 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 	return carga;
 }
 //--------------------------------------------------------------------------------//
-void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& rect){
+void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& Winrect){
+	SDL_Rect rect;//dimensiones de la textura
+	rect.h = 0;
+	rect.w = 0;
+	rect.x = 0;
+	rect.y = 0;
+
 	//Clear the window to background color 
 	SDL_RenderClear(pRenderer);
 
-	SDL_RenderCopy(pRenderer, pTextura, &rect, winRect);
+	SDL_RenderCopy(pRenderer, pTextura, &rect, &Winrect);
 	//Show the window
 	SDL_RenderPresent(pRenderer);
 }
@@ -51,5 +55,4 @@ TexturasSDL::~TexturasSDL()
 {
 	SDL_DestroyTexture (pTextura);
 	pTextura = nullptr;
-	winRect = nullptr;
 }

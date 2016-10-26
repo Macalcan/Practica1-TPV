@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include <string>
+
 class TexturasSDL
 {
 public:
@@ -11,6 +12,5 @@ private:
 	SDL_Surface* loadFile(string file);
 	void draw(SDL_Renderer* pRenderer, SDL_Rect const& rect);
 	SDL_Texture* pTextura;
-	const SDL_Rect* winRect;
 };
 
