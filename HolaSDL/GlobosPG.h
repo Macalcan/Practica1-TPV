@@ -8,16 +8,17 @@ public:
 	GlobosPG(TexturasSDL* img, int &px, int &py);
 	~GlobosPG();
 private: 
-	void draw(SDL_Renderer* pRenderer);
+	void draw(SDL_Renderer* pRenderer) const;
 	bool onClick(int &pmx, int &pmy);
 	bool update();
 	int puntos;
 	bool explotado;
 	int alto;
 	int ancho;
-	bool visible;
+	//bool visible;
 	int x;
 	int y;
-	int hinchado;
+	int inflado;
+	SDL_Rect balloon;
 };
 
