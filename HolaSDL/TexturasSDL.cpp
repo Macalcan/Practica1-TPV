@@ -6,7 +6,8 @@ using namespace std;
 TexturasSDL::TexturasSDL()
 {
 	
-
+	SDL_Texture* pTextura = nullptr;
+	const SDL_Rect* winRect = nullptr;
 }
 //--------------------------------------------------------------------------------//
 bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
@@ -31,7 +32,12 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 }
 //--------------------------------------------------------------------------------//
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& rect){
+	//Clear the window to background color 
+	SDL_RenderClear(pRenderer);
+
 	SDL_RenderCopy(pRenderer, pTextura, &rect, winRect);
+	//Show the window
+	SDL_RenderPresent(pRenderer);
 }
 //--------------------------------------------------------------------------------//
 SDL_Surface* TexturasSDL::loadFile(string file)
@@ -39,9 +45,11 @@ SDL_Surface* TexturasSDL::loadFile(string file)
 	SDL_Surface* archivo = nullptr;
 	archivo = SDL_LoadBMP(file.c_str());
 	return archivo;
-
 }
 //--------------------------------------------------------------------------------//
 TexturasSDL::~TexturasSDL()
 {
+	SDL_DestroyTexture (pTextura);
+	pTextura = nullptr;
+	winRect = nullptr;
 }
