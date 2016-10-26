@@ -9,7 +9,15 @@ public:
 	~GlobosPG();
 private: 
 	void draw(SDL_Renderer* pRenderer);
-	void onClick(int &pmx, int &pmy);
+	bool onClick(int &pmx, int &pmy);
 	bool update();
+	int puntos;
+	bool explotado;
+	int alto;
+	int ancho;
+	bool visible;
+	int x;
+	int y;
+	int hinchado;
 };
 
