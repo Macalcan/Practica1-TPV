@@ -12,7 +12,7 @@ GlobosPG::GlobosPG(TexturasSDL* img, int &px, int &py)
 
 	alto = ancho = 100;
 	explotado = false;
-	puntos = 0;
+	puntos = 0; //en desuso
 	//visible = true;
 	inflado = 100;
 
