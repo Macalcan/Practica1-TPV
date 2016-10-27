@@ -1,16 +1,56 @@
 ﻿#include "juegoPG.h"
+#include "TexturasSDL.h"
 #include <iostream>
 using namespace std;
 
 juegoPG::juegoPG()
 {
-	initSDL() {}
-	initGlobos() {}
+	const int ancho = 640;   //dimensiones de la ventana
+	const int alto = 480; 
+	globos.size(1) const;
+	SDL_Window * pWindow = nullptr;
+	SDL_Renderer * pRenderer = nullptr;
+	
 }
 //--------------------------------------------------------------------------------//
-bool juegoPG::initSDL() {}
+bool juegoPG::initSDL() {
+
+	
+	bool carga = true; //si carga es false no se puede cargar la ventana inicializando SDL
+
+	
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+		cout << "¡SDL no se ha podido iniciar! \nSDL_Error: " << SDL_GetError() << '\n';
+		carga = false;
+	}
+	else {
+		pWindow = SDL_CreateWindow("SDL Balloon", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, ancho, alto, SDL_WINDOW_SHOWN);
+		if (pWindow == nullptr){
+			cout << "¡La ventana no se ha podido crear! \nSDL_Error: " << SDL_GetError() << '\n';
+			carga = false;
+		}
+		else {
+			//Toma la superficie de la ventana:
+			pRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
+			SDL_SetRenderDrawColor(pRenderer, 0, 0, 0, 255); //De momento la ventana sera negra pero despues tendra un fondo
+			if (pRenderer == nullptr){
+				cout << "¡No se ha podido crear el renderer! \nSDL_Error: " << SDL_GetError() << '\n';
+				carga = false;
+			}
+		}
+	}
+
+	return carga;
+}
 //--------------------------------------------------------------------------------//
-bool juegoPG::initGlobos() {}
+bool juegoPG::initGlobos() {
+	bool addTecture = true;
+
+	TexturasSDL t;
+	t.loadFile("globoN.png"); //comrpobar que no se tenga que poner la ruta
+
+
+}
 //--------------------------------------------------------------------------------//
 void juegoPG::closeSDL() {}
 //--------------------------------------------------------------------------------//
@@ -36,7 +76,7 @@ bool juegoPG::handle_event() {
 		// else if(...)  
 	}
 	//return !running;
-}
+}//no esta completado
 //--------------------------------------------------------------------------------//
 void juegoPG::run()
 {
@@ -62,9 +102,8 @@ void juegoPG::run()
 //--------------------------------------------------------------------------------//
 juegoPG::~juegoPG()
 {
-	//--------------------------------------------------------------------------------//
-	closeSDL() {}
-	//--------------------------------------------------------------------------------//
-	freeGlobos() {}
-	//--------------------------------------------------------------------------------//
+	closeSDL();
+	freeGlobos();
+	SDL_Window * pWindow = nullptr;
+	SDL_Renderer * pRenderer = nullptr;
 }

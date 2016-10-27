@@ -1,5 +1,7 @@
 #pragma once
 #include "SDL.h"
+#include "GlobosPG.h"
+#include <vector>
 class juegoPG
 {
 public:
@@ -17,5 +19,10 @@ private:
 	bool handle_event();
 	int puntos;
 	bool error, gameOver;
+	SDL_Window* pWindow;
+	SDL_Renderer* pRenderer;
+	vector <GlobosPG*> globos;//¿vector de punteros?
+	const int ancho;   
+	const int alto;  
 };
 

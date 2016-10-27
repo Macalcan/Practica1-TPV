@@ -12,7 +12,7 @@ GlobosPG::GlobosPG(TexturasSDL* img, int &px, int &py)
 
 	alto = ancho = 100;
 	explotado = false;
-	puntos = 0; //en desuso
+	puntos = 1; //en desuso
 	//visible = true;
 	inflado = 100;
 
@@ -40,6 +40,7 @@ bool GlobosPG::onClick(int &pmx, int &pmy){
 bool GlobosPG::update(){
 	//!!!!!!!!!!!!!!!!!!! mirar si estas lineas han de ir dentro del if else (en el else) o no
 	inflado -= 10; //disminuye el tamaño del globo
+	puntos++;
 	balloon.h -= 10;
 	balloon.w -= 10;
 	//si se ha deshinchado o se ha explotado el globo ya no sera visible 
@@ -51,6 +52,9 @@ bool GlobosPG::update(){
 
 
 }
+
+//getter de puntos
+
 //--------------------------------------------------------------------------------//
 GlobosPG::~GlobosPG()
 {
