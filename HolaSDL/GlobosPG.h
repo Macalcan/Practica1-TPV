@@ -6,11 +6,14 @@ class GlobosPG
 {
 public:
 	GlobosPG(TexturasSDL* img, int &px, int &py);
+	bool onClick(int &pmx, int &pmy);
+	int getPuntos();
+	bool update();
 	~GlobosPG();
 private: 
+	
 	void draw(SDL_Renderer* pRenderer) const;
-	bool onClick(int &pmx, int &pmy);
-	bool update();
+	
 	int puntos;
 	bool explotado;
 	int alto;

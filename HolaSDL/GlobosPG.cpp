@@ -44,7 +44,7 @@ bool GlobosPG::update(){
 	balloon.h -= 10;
 	balloon.w -= 10;
 	//si se ha deshinchado o se ha explotado el globo ya no sera visible 
-	if (inflado == 0 || explotado){
+	if (inflado == 0){ //|| explotado){
 		return true;
 	}
 	else
@@ -53,7 +53,9 @@ bool GlobosPG::update(){
 
 }
 
-//getter de puntos
+int GlobosPG::getPuntos(){
+	return puntos;
+}
 
 //--------------------------------------------------------------------------------//
 GlobosPG::~GlobosPG()

@@ -1,6 +1,7 @@
 ﻿#include "juegoPG.h"
 #include "TexturasSDL.h"
 #include <iostream>
+#include "GlobosPG.h"
 using namespace std;
 
 juegoPG::juegoPG()
@@ -10,6 +11,7 @@ juegoPG::juegoPG()
 	globos.size(1) const;
 	SDL_Window * pWindow = nullptr;
 	SDL_Renderer * pRenderer = nullptr;
+	numG = globos.size();
 	
 }
 //--------------------------------------------------------------------------------//
@@ -44,12 +46,11 @@ bool juegoPG::initSDL() {
 }
 //--------------------------------------------------------------------------------//
 bool juegoPG::initGlobos() {
-	bool addTecture = true;
+	bool addTexture = true;
 
 	TexturasSDL t;
 	t.loadFile("globoN.png"); //comrpobar que no se tenga que poner la ruta
-
-
+	
 }
 //--------------------------------------------------------------------------------//
 void juegoPG::closeSDL() {}
@@ -58,9 +59,25 @@ void juegoPG::freeGlobos() {}
 //--------------------------------------------------------------------------------//
 void juegoPG::render() {}
 //--------------------------------------------------------------------------------//
-void juegoPG::onClick(int &pmx, int &pmy){}
+void juegoPG::onClick(int &pmx, int &pmy){
+	int aux; //auxiliar para obtener los puntos de un globo
+	GlobosPG g;
+	if (g.onClick(&pmx, &pmy)){
+		aux = g.getPuntos();
+		puntos += aux;
+		numG--;
+	}
+}
 //--------------------------------------------------------------------------------//
-void juegoPG::update() {}
+void juegoPG::update() {
+	for (int i = 0; i < globos.size(); i++){
+		bool aux = (*globos)[i].update();
+		if (aux)
+			numG--;
+		
+	}
+	//actualizacion del numero de globos activos
+}
 //--------------------------------------------------------------------------------//
 bool juegoPG::handle_event() {
 	SDL_Event e;
