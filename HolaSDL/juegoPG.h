@@ -22,6 +22,7 @@ private:
 	SDL_Window* pWindow;
 	SDL_Renderer* pRenderer;
 	vector <GlobosPG*> globos;//¿vector de punteros?
+	
 	const int ancho;   
 	const int alto;
 	int numG; //numero de globos
