@@ -2,6 +2,8 @@
 #include "SDL.h"
 #include "GlobosPG.h"
 #include <vector>
+
+const int dim = 1;
 class juegoPG
 {
 public:
@@ -9,11 +11,12 @@ public:
 	void run();
 	~juegoPG();
 private:
+	
 	bool initSDL();
 	void closeSDL();
 	bool initGlobos();
 	void freeGlobos();
-	void render();
+	void render()const;
 	void onClick(int &pmx, int &pmy);
 	void update();
 	bool handle_event();
@@ -21,8 +24,9 @@ private:
 	bool error, gameOver;
 	SDL_Window* pWindow;
 	SDL_Renderer* pRenderer;
-	vector <GlobosPG*> globos;//¿vector de punteros?
 	
+	GlobosPG* globos [dim]; //array de los globos
+	TexturasSDL* ptexture;
 	const int ancho;   
 	const int alto;
 	int numG; //numero de globos

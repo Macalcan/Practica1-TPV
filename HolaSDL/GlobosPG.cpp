@@ -9,9 +9,10 @@ GlobosPG::GlobosPG(TexturasSDL* img, int &px, int &py)
 
 	//asignacion de la posicion y para un globo que luego ha de ser aleatoria
 	y = py;
-
+	//SDL_Renderer* pRender = img;
 	alto = ancho = 100;
 	explotado = false;
+	visible = true;
 	puntos = 1; //en desuso
 	//visible = true;
 	inflado = 100;

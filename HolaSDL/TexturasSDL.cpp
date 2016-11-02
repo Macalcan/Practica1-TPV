@@ -29,6 +29,9 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 	return carga;
 }
 //--------------------------------------------------------------------------------//
+	SDL_Texture* TexturasSDL::getTextura(){
+		return pTextura;
+	}
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& Winrect){
 	SDL_Rect rect;//dimensiones de la textura
 	rect.h = 0;

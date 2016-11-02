@@ -9,7 +9,7 @@ juegoPG::juegoPG()
 	const int ancho = 640;   //dimensiones de la ventana
 	const int alto = 480; 
 	
-	
+	ptexture = nullptr;
 	SDL_Window * pWindow = nullptr;
 	SDL_Renderer * pRenderer = nullptr;
 	
@@ -47,47 +47,59 @@ bool juegoPG::initSDL() {
 }
 //--------------------------------------------------------------------------------//
 bool juegoPG::initGlobos() {
-	bool addTexture = true;
+	bool addTexture = true; //REVISAR 
+	//declaras variables aleatorias x e y
+	int x = 0; //tendran que ser aleatorias y meter en el for cuando sean random
+	int y = 0; //tendran que ser aleatorias
+	ptexture = new TexturasSDL;
+	//si se hace con un array globosPg g = new GlobosPG [text, x, y]
+	for (int i = 0; i < dim; i++){
+		globos[i] = new GlobosPG(ptexture, x, y);
+	}
+	
+	string nombre = { "...\\bmp\\globoN.png" }; //comrpobar que no se tenga que poner la ruta
+	ptexture->loadFile(nombre);
 
-	TexturasSDL t;
-	t.loadFile("globoN.png"); //comrpobar que no se tenga que poner la ruta
-	globos.size(1) const; //vector de los globos
-	numG = globos.size(); //numero de globos sin explotar independientemente de si son visibles o no
+	numG = dim; //numero total de globos al principio del juego
 }
 
 //--------------------------------------------------------------------------------//
 void juegoPG::closeSDL() {}
 //--------------------------------------------------------------------------------//
 void juegoPG::freeGlobos() {
-	globos = nullptr;
+	//destruye el array de los globos
+	delete globos;
+	ptexture ->~TexturasSDL;
+
 }
 //--------------------------------------------------------------------------------//
 //dibuja los globos que estan visibles, para ello deberia hacer probablemente un for recorriendo todos los globos y accediendo a su atributo visible,
 //en caso de que el globo lo sea se dibuja con draw(pRenderer), pRenderer está declarado arriba pero no asginado
-void juegoPG::render() {
-	if (globos.getVisible()){
-		globos.draw(pRenderer);
+void juegoPG::render()const {
+	
+	for (int i = 0; i < dim; i++){
+		if (globos[i] ->getVisible()){
+			globos[i] -> draw(pRenderer);
+		}
 	}
 }
 //--------------------------------------------------------------------------------//
 //comprueba si al hacer click ha explotado el globo a traves del metodo onClick de GlobosPG y si lo ha explotado saca los puntos del globo y los suma
 //a los puntos conseguidos en total
-//¿habria que comprobarlo en todos los globos?
 void juegoPG::onClick(int &pmx, int &pmy){
 	int aux; //auxiliar para obtener los puntos de un globo
-	
-	if (globos.onClick(&pmx, &pmy)){
-		aux = globos.getPuntos();
-		puntos += aux;
-		numG--;
+	for (int i = 0; i < numG; i++){ //revisar
+		if (globos[i]->onClick(pmx, pmy)){
+			aux = globos[i]->getPuntos();
+			puntos += aux; 
+		}
 	}
 }
 //--------------------------------------------------------------------------------//
 //recorre todos los globos actualizandolos y comprobando si se han desinflado o explotado, y por lo tanto no son visibles
 void juegoPG::update() {
-	for (int i = 0; i < globos.size(); i++){
-		bool aux = (*globos)[i].update();
-		if (aux)
+	for (int i = 0; i < numG; i++){
+		if (globos[i]->update()) //REVISAR
 			numG--;
 		
 	}
@@ -138,6 +150,8 @@ juegoPG::~juegoPG()
 {
 	closeSDL();
 	freeGlobos();
-	SDL_Window * pWindow = nullptr;
-	SDL_Renderer * pRenderer = nullptr;
+	SDL_DestroyTexture(ptexture);
+	ptexture = nullptr;
+	pWindow = nullptr;
+	pRenderer = nullptr;
 }
