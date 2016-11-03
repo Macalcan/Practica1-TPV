@@ -64,7 +64,15 @@ bool juegoPG::initGlobos() {
 }
 
 //--------------------------------------------------------------------------------//
-void juegoPG::closeSDL() {}
+void juegoPG::closeSDL() {
+	SDL_DestroyRenderer(pRenderer);
+	pRenderer = nullptr;
+
+	SDL_DestroyWindow(pWindow);
+	pWindow = nullptr;
+
+	SDL_Quit();
+}
 //--------------------------------------------------------------------------------//
 void juegoPG::freeGlobos() {
 	//destruye el array de los globos
@@ -78,7 +86,7 @@ void juegoPG::freeGlobos() {
 void juegoPG::render()const {
 	
 	for (int i = 0; i < dim; i++){
-		if (globos[i] ->getVisible()){
+		if (globos[i] ->getInisible()){
 			globos[i] -> draw(pRenderer);
 		}
 	}

@@ -9,7 +9,7 @@ public:
 	bool onClick(int &pmx, int &pmy);
 	void draw(SDL_Renderer* pRenderer) const;
 	int getPuntos();
-	bool getVisible();
+	bool getInvisible();
 	bool update();
 	~GlobosPG();
 private: 
@@ -17,11 +17,10 @@ private:
 	bool explotado;
 	int alto;
 	int ancho;
-	//bool visible;
 	int x;
 	int y;
 	int inflado;
-	bool visible;
+	bool invisible;
 	SDL_Rect balloon;
 };
 

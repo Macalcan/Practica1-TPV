@@ -33,7 +33,7 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 		return pTextura;
 	}
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& Winrect){
-	SDL_Rect rect;//dimensiones de la textura
+	SDL_Rect rect;//dimensiones de la textura REVISAR
 	rect.h = 0;
 	rect.w = 0;
 	rect.x = 0;
