@@ -7,7 +7,7 @@ using namespace std; // Para cualificar automaticamente con std:: los identifica
 //----------------------------------------------------------------------------------------------------------------------
 
 // declaraciones globales
-
+/*
 bool init(SDL_Window* & pWindow, SDL_Renderer* & pRenderer);  // arranca SDL y define las variables: pWindow y pRenderer
 
 bool loadTexture(SDL_Renderer* pRenderer, SDL_Texture* & pTexture);  // crea una textura a partir de un archivo y define la variable pTexture 
@@ -162,3 +162,4 @@ void update() {
 }  
 //----------------------------------------------------------------------------------------------------------------------
 
+*/

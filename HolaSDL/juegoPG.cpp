@@ -13,6 +13,13 @@ juegoPG::juegoPG()
 	SDL_Window * pWindow = nullptr;
 	SDL_Renderer * pRenderer = nullptr;
 	
+
+	error = false;
+	exit = false;
+	gameOver = false;
+	puntos = 0;
+	initGlobos();
+	initSDL();
 	
 }
 //--------------------------------------------------------------------------------//
@@ -86,7 +93,7 @@ void juegoPG::freeGlobos() {
 void juegoPG::render()const {
 	
 	for (int i = 0; i < dim; i++){
-		if (globos[i] ->getInisible()){
+		if (globos[i] ->getInvisible()){
 			globos[i] -> draw(pRenderer);
 		}
 	}
@@ -95,11 +102,10 @@ void juegoPG::render()const {
 //comprueba si al hacer click ha explotado el globo a traves del metodo onClick de GlobosPG y si lo ha explotado saca los puntos del globo y los suma
 //a los puntos conseguidos en total
 void juegoPG::onClick(int &pmx, int &pmy){
-	int aux; //auxiliar para obtener los puntos de un globo
+	
 	for (int i = 0; i < numG; i++){ //revisar
 		if (globos[i]->onClick(pmx, pmy)){
-			aux = globos[i]->getPuntos();
-			puntos += aux; 
+			puntos += globos[i]->getPuntos(); 
 		}
 	}
 }
@@ -107,10 +113,14 @@ void juegoPG::onClick(int &pmx, int &pmy){
 //recorre todos los globos actualizandolos y comprobando si se han desinflado o explotado, y por lo tanto no son visibles
 void juegoPG::update() {
 	for (int i = 0; i < numG; i++){
-		if (globos[i]->update()) //REVISAR
+		if (globos[i]->update()){ //REVISAR
 			numG--;
-		
+			delete globos[i];
+		}
 	}
+
+	if (numG <= 0)
+		gameOver = true;
 	//actualizacion del numero de globos activos
 
 	
@@ -119,18 +129,16 @@ void juegoPG::update() {
 bool juegoPG::handle_event() {
 	SDL_Event e;
 	if (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT) onExit();
+		if (e.type == SDL_QUIT) exit = true;
 		else if (e.type == SDL_MOUSEBUTTONUP) {
 			if (e.button.button == SDL_BUTTON_LEFT) {
 				cout << "CLICK";
 				onClick(e.button.x, e.button.y);
 			}
-			// else if(...)    
 		}
-		// else if(...)  
 	}
-	//return !running;
-}//no esta completado
+	
+}
 //--------------------------------------------------------------------------------//
 void juegoPG::run()
 {

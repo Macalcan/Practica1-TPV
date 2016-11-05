@@ -21,7 +21,7 @@ private:
 	void update();
 	bool handle_event();
 	int puntos;
-	bool error, gameOver;
+	bool error, gameOver, exit;
 	SDL_Window* pWindow;
 	SDL_Renderer* pRenderer;
 	
