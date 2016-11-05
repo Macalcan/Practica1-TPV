@@ -54,8 +54,8 @@ bool GlobosPG::update(){
 
 }
 //
-bool GlobosPG::getVisible(){
-	return visible;
+bool GlobosPG::getInvisible(){
+	return invisible;
 }
 int GlobosPG::getPuntos(){
 	return puntos;
