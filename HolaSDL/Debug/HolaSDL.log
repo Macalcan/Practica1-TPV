@@ -1,14 +1,19 @@
-﻿Compilación iniciada a las 07/11/2016 10:49:34.
-     1>Proyecto "C:\hlocal\macalcan\Practica1-TPV\HolaSDL\HolaSDL.vcxproj" en el nodo 2 (ClCompile destinos).
+﻿Compilación iniciada a las 07/11/2016 17:18:42.
+     1>Proyecto "C:\Users\blanc_000\Universidad\TP\Practica1-TPV\HolaSDL\HolaSDL.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt juegoPG.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GlobosPG.cpp juegoPG.cpp mainP1.cpp TexturasSDL.cpp
+         TexturasSDL.cpp
+         mainP1.cpp
          juegoPG.cpp
-     1>c:\hlocal\macalcan\practica1-tpv\holasdl\juegopg.cpp(87): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
-     1>c:\hlocal\macalcan\practica1-tpv\holasdl\juegopg.cpp(87): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
-     1>c:\hlocal\macalcan\practica1-tpv\holasdl\juegopg.cpp(171): error C2664: 'void SDL_DestroyTexture(SDL_Texture *)' : el argumento 1 no puede convertirse de 'TexturasSDL *' a 'SDL_Texture *'
+     1>c:\users\blanc_000\universidad\tp\practica1-tpv\holasdl\juegopg.cpp(87): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+     1>c:\users\blanc_000\universidad\tp\practica1-tpv\holasdl\juegopg.cpp(87): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+     1>c:\users\blanc_000\universidad\tp\practica1-tpv\holasdl\juegopg.cpp(171): error C2664: 'void SDL_DestroyTexture(SDL_Texture *)' : el argumento 1 no puede convertirse de 'TexturasSDL *' a 'SDL_Texture *'
                  Los tipos señalados no están relacionados; la conversión requiere reinterpret_cast, conversión de estilo de C o conversión de estilo de función
-     1>Compilación del proyecto terminada "C:\hlocal\macalcan\Practica1-TPV\HolaSDL\HolaSDL.vcxproj" (ClCompile destinos) -- ERROR.
+         GlobosPG.cpp
+         Generando código...
+     1>c:\users\blanc_000\universidad\tp\practica1-tpv\holasdl\globospg.cpp(39): warning C4715: 'GlobosPG::onClick' : no todas las rutas de acceso de control devuelven un valor
+     1>Compilación del proyecto terminada "C:\Users\blanc_000\Universidad\TP\Practica1-TPV\HolaSDL\HolaSDL.vcxproj" (Build destinos) -- ERROR.
 
 ERROR al compilar.
 
-Tiempo transcurrido 00:00:00.28
+Tiempo transcurrido 00:00:07.58

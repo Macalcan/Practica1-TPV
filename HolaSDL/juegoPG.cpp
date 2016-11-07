@@ -2,18 +2,15 @@
 #include "TexturasSDL.h"
 #include <iostream>
 #include "GlobosPG.h"
-typedef uint32_t Uint32;
 using namespace std;
 
 juegoPG::juegoPG()
 {
-	const int ancho = 640;   //dimensiones de la ventana
-	const int alto = 480; 
-	
+
 	ptexture = nullptr;
 	SDL_Window * pWindow = nullptr;
 	SDL_Renderer * pRenderer = nullptr;
-	
+
 
 	error = false;
 	exit = false;
@@ -21,15 +18,15 @@ juegoPG::juegoPG()
 	puntos = 0;
 	initGlobos();
 	initSDL();
-	
+
 }
 //--------------------------------------------------------------------------------//
 bool juegoPG::initSDL() {
 
-	
+
 	bool carga = true; //si carga es false no se puede cargar la ventana inicializando SDL
 
-	
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		cout << "¡SDL no se ha podido iniciar! \nSDL_Error: " << SDL_GetError() << '\n';
 		carga = false;
@@ -60,15 +57,17 @@ bool juegoPG::initGlobos() {
 	int x = 0; //tendran que ser aleatorias y meter en el for cuando sean random
 	int y = 0; //tendran que ser aleatorias
 	ptexture = new TexturasSDL;
+	string nombre = { "..\\bmps\\globoN.png" }; //comrpobar que no se tenga que poner la ruta
+	ptexture->load(pRenderer, nombre);
+
 	//si se hace con un array globosPg g = new GlobosPG [text, x, y]
 	for (int i = 0; i < dim; i++){
 		globos[i] = new GlobosPG(ptexture, x, y);
 	}
-	
-	string nombre = { "...\\bmp\\globoN.png" }; //comrpobar que no se tenga que poner la ruta
-	ptexture->loadFile(nombre);
+
 
 	numG = dim; //numero total de globos al principio del juego
+	return true;
 }
 
 //--------------------------------------------------------------------------------//
@@ -84,7 +83,7 @@ void juegoPG::closeSDL() {
 //--------------------------------------------------------------------------------//
 void juegoPG::freeGlobos() {
 	//destruye el array de los globos
-	delete globos;
+	delete globos[0];
 	ptexture ->~TexturasSDL();
 
 }
@@ -92,10 +91,10 @@ void juegoPG::freeGlobos() {
 //dibuja los globos que estan visibles, para ello deberia hacer probablemente un for recorriendo todos los globos y accediendo a su atributo visible,
 //en caso de que el globo lo sea se dibuja con draw(pRenderer), pRenderer está declarado arriba pero no asginado
 void juegoPG::render()const {
-	
+
 	for (int i = 0; i < dim; i++){
-		if (globos[i] ->getInvisible()){
-			globos[i] -> draw(pRenderer);
+		if (globos[i]->getInvisible()){
+			globos[i]->draw(pRenderer);
 		}
 	}
 }
@@ -103,10 +102,10 @@ void juegoPG::render()const {
 //comprueba si al hacer click ha explotado el globo a traves del metodo onClick de GlobosPG y si lo ha explotado saca los puntos del globo y los suma
 //a los puntos conseguidos en total
 void juegoPG::onClick(int &pmx, int &pmy){
-	
+
 	for (int i = 0; i < numG; i++){ //revisar
 		if (globos[i]->onClick(pmx, pmy)){
-			puntos += globos[i]->getPuntos(); 
+			puntos += globos[i]->getPuntos();
 		}
 	}
 }
@@ -124,10 +123,10 @@ void juegoPG::update() {
 		gameOver = true;
 	//actualizacion del numero de globos activos
 
-	
+
 }
 //--------------------------------------------------------------------------------//
-bool juegoPG::handle_event() {
+void juegoPG::handle_event() {
 	SDL_Event e;
 	if (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) exit = true;
@@ -138,19 +137,19 @@ bool juegoPG::handle_event() {
 			}
 		}
 	}
-	
+
 }
 //--------------------------------------------------------------------------------//
 void juegoPG::run()
 {
 	if (!error){
-		Uint32 MsxUpdate = 500;
-		cout << "PLAY \n";
+		Uint32 MSxUpdate = 500;
+		cout << "Play \n";
 		Uint32 lastUpdate = SDL_GetTicks();
 		render();
 		handle_event();
 		while (!exit && !gameOver){
-			if (SDL_GetTicks() - lastUpdate <= MsxUpdate){ //while(elapsed <= MSxUpdate)
+			if (SDL_GetTicks() - lastUpdate >= MSxUpdate){//while(elapsed >= MSxUpdate)
 				update();
 				lastUpdate = SDL_GetTicks();
 			}
@@ -158,17 +157,20 @@ void juegoPG::run()
 			render();
 			handle_event();
 		}
-		if (exit) cout << "EXIT \n";
-		else cout << "Has obtenido " << puntos << "puntos \n";
+		if (exit) cout << "Exit \n";
+		else cout << "Has obtenido " << puntos << " puntos \n";
 		SDL_Delay(1000); //cin.get();
 	}
+
+
+
 }
+
 //--------------------------------------------------------------------------------//
 juegoPG::~juegoPG()
 {
 	closeSDL();
 	freeGlobos();
-	SDL_DestroyTexture(ptexture);
 	ptexture = nullptr;
 	pWindow = nullptr;
 	pRenderer = nullptr;

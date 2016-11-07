@@ -1,6 +1,7 @@
 #include "TexturasSDL.h"
 #include <iostream>
 #include <string>
+#include "SDL_image.h"
 using namespace std;
 
 TexturasSDL::TexturasSDL()
@@ -20,7 +21,7 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 		cout << "Imposible cargar el archivo" << nombArch << "! \nSDL Error: " << SDL_GetError() << "\n";
 		carga = false;
 	}
-	else 
+	else
 	{
 		pTextura = SDL_CreateTextureFromSurface(pRenderer, pTempSurface); //Se crea una textura a partir de nuestra superficie
 		SDL_FreeSurface(pTempSurface);//liberamos la superficie porque se ha cargado la textura
@@ -29,9 +30,9 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 	return carga;
 }
 //--------------------------------------------------------------------------------//
-	SDL_Texture* TexturasSDL::getTextura(){
-		return pTextura;
-	}
+SDL_Texture* TexturasSDL::getTextura(){
+	return pTextura;
+}
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& Winrect){
 	SDL_Rect rect;//dimensiones de la textura REVISAR
 	rect.h = 0;
@@ -49,14 +50,15 @@ void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& Winrect){
 //--------------------------------------------------------------------------------//
 SDL_Surface* TexturasSDL::loadFile(string file)
 {
+
 	SDL_Surface* archivo = nullptr;
-	archivo = SDL_LoadBMP(file.c_str());
+	archivo = IMG_Load(file.c_str());
 	return archivo;
 }
 //--------------------------------------------------------------------------------//
 TexturasSDL::~TexturasSDL()
 {
 	//destruimos la textura y liberamos el puntero
-	SDL_DestroyTexture (pTextura);
+	SDL_DestroyTexture(pTextura);
 	pTextura = nullptr;
 }
