@@ -2,6 +2,7 @@
 #include "TexturasSDL.h"
 #include <iostream>
 #include "GlobosPG.h"
+typedef uint32_t Uint32;
 using namespace std;
 
 juegoPG::juegoPG()
@@ -84,7 +85,7 @@ void juegoPG::closeSDL() {
 void juegoPG::freeGlobos() {
 	//destruye el array de los globos
 	delete globos;
-	ptexture ->~TexturasSDL;
+	ptexture ->~TexturasSDL();
 
 }
 //--------------------------------------------------------------------------------//
@@ -143,21 +144,22 @@ bool juegoPG::handle_event() {
 void juegoPG::run()
 {
 	if (!error){
-		Uint32 MSxUpdate = 500;  
+		Uint32 MsxUpdate = 500;
 		cout << "PLAY \n";
 		Uint32 lastUpdate = SDL_GetTicks();
 		render();
 		handle_event();
-		while (!exit && !gameOver) {
-			if (SDL_GetTicks() - lastUpdate >= MSxUpdate) {//while(elapsed >= MSxUpdate)
+		while (!exit && !gameOver){
+			if (SDL_GetTicks() - lastUpdate <= MsxUpdate){ //while(elapsed <= MSxUpdate)
 				update();
 				lastUpdate = SDL_GetTicks();
 			}
+
 			render();
 			handle_event();
 		}
 		if (exit) cout << "EXIT \n";
-		else cout << "Has obtenido " << puntos << "puntos\n";
+		else cout << "Has obtenido " << puntos << "puntos \n";
 		SDL_Delay(1000); //cin.get();
 	}
 }

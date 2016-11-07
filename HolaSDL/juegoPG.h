@@ -2,6 +2,8 @@
 #include "SDL.h"
 #include "GlobosPG.h"
 #include <vector>
+using namespace std;
+typedef uint32_t Uint32;
 
 const int dim = 1;
 class juegoPG
@@ -27,8 +29,8 @@ private:
 	
 	GlobosPG* globos [dim]; //array de los globos
 	TexturasSDL* ptexture;
-	const int ancho;   
-	const int alto;
+	int ancho;   
+	int alto;
 	int numG; //numero de globos
 };
 

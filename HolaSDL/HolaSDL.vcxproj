@@ -68,7 +68,6 @@
   <ItemGroup>
     <ClCompile Include="GlobosPG.cpp" />
     <ClCompile Include="juegoPG.cpp" />
-    <ClCompile Include="mainHola.cpp" />
     <ClCompile Include="mainP1.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
   </ItemGroup>

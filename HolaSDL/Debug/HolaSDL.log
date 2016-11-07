@@ -1,44 +1,14 @@
-﻿Compilación iniciada a las 05/11/2016 19:33:18.
-     1>Proyecto "C:\Users\blanc_000\Universidad\TP\P1\Practica1-TPV\Practica1-TPV\HolaSDL\HolaSDL.vcxproj" en el nodo 2 (Build destinos).
+﻿Compilación iniciada a las 07/11/2016 10:49:34.
+     1>Proyecto "C:\hlocal\macalcan\Practica1-TPV\HolaSDL\HolaSDL.vcxproj" en el nodo 2 (ClCompile destinos).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GlobosPG.cpp TexturasSDL.cpp juegoPG.cpp mainP1.cpp
-         mainP1.cpp
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(11): error C2061: error de sintaxis : identificador 'string'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(14): error C2061: error de sintaxis : identificador 'string'
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt juegoPG.cpp
          juegoPG.cpp
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(11): error C2061: error de sintaxis : identificador 'string'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(14): error C2061: error de sintaxis : identificador 'string'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(8): error C2758: 'juegoPG::ancho' : debe inicializarse un miembro de tipo de referencia
-                 c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.h(30) : vea la declaración de 'juegoPG::ancho'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(8): error C2758: 'juegoPG::alto' : debe inicializarse un miembro de tipo de referencia
-                 c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.h(31) : vea la declaración de 'juegoPG::alto'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(68): error C2660: 'TexturasSDL::loadFile' : la función no acepta 1 argumentos
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(86): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(86): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(87): error C3866: falta la lista de argumentos en la llamada a destructor
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(146): error C3872: '0xa0': este carácter no se permite en un identificador
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(147): error C2065: '  ' : identificador no declarado
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(147): error C2146: error de sintaxis : falta ';' delante del identificador 'cout'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\juegopg.cpp(169): error C2664: 'void SDL_DestroyTexture(SDL_Texture *)' : el argumento 1 no puede convertirse de 'TexturasSDL *' a 'SDL_Texture *'
+     1>c:\hlocal\macalcan\practica1-tpv\holasdl\juegopg.cpp(87): warning C4156: eliminación de expresión de matriz sin utilizar el formato de matriz de 'delete'; formato de matriz sustituido
+     1>c:\hlocal\macalcan\practica1-tpv\holasdl\juegopg.cpp(87): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+     1>c:\hlocal\macalcan\practica1-tpv\holasdl\juegopg.cpp(171): error C2664: 'void SDL_DestroyTexture(SDL_Texture *)' : el argumento 1 no puede convertirse de 'TexturasSDL *' a 'SDL_Texture *'
                  Los tipos señalados no están relacionados; la conversión requiere reinterpret_cast, conversión de estilo de C o conversión de estilo de función
-         TexturasSDL.cpp
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(11): error C2061: error de sintaxis : identificador 'string'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(14): error C2061: error de sintaxis : identificador 'string'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.cpp(12): error C2511: 'bool TexturasSDL::load(SDL_Renderer *,const std::string &)' : la función miembro sobrecargada no se ha encontrado en 'TexturasSDL'
-                 c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(6) : vea la declaración de 'TexturasSDL'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.cpp(17): error C2660: 'TexturasSDL::loadFile' : la función no acepta 1 argumentos
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.cpp(25): error C2597: referencia no válida a miembro no static 'TexturasSDL::pTextura'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.cpp(27): error C2597: referencia no válida a miembro no static 'TexturasSDL::pTextura'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.cpp(27): error C3867: 'TexturasSDL::pTextura': falta la lista de argumentos de la llamada a la función; utilice '&TexturasSDL::pTextura' para crear un puntero al miembro
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.cpp(51): error C2511: 'SDL_Surface *TexturasSDL::loadFile(std::string)' : la función miembro sobrecargada no se ha encontrado en 'TexturasSDL'
-                 c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(6) : vea la declaración de 'TexturasSDL'
-         GlobosPG.cpp
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(11): error C2061: error de sintaxis : identificador 'string'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\texturassdl.h(14): error C2061: error de sintaxis : identificador 'string'
-     1>c:\users\blanc_000\universidad\tp\p1\practica1-tpv\practica1-tpv\holasdl\globospg.cpp(15): error C2065: 'visible' : identificador no declarado
-         Generando código...
-     1>Compilación del proyecto terminada "C:\Users\blanc_000\Universidad\TP\P1\Practica1-TPV\Practica1-TPV\HolaSDL\HolaSDL.vcxproj" (Build destinos) -- ERROR.
+     1>Compilación del proyecto terminada "C:\hlocal\macalcan\Practica1-TPV\HolaSDL\HolaSDL.vcxproj" (ClCompile destinos) -- ERROR.
 
 ERROR al compilar.
 
-Tiempo transcurrido 00:00:06.33
+Tiempo transcurrido 00:00:00.28
