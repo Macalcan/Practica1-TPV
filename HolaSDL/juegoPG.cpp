@@ -111,8 +111,7 @@ void juegoPG::render()const {
 void juegoPG::onClick(int &pmx, int &pmy){
 
 	for (int i = 0; i < dim; i++){ //revisar
-		if (globos[i]->onClick(pmx, pmy) && !explotados[i]){
-			explotados[i] = true;
+		if (globos[i]->onClick(pmx, pmy) && !explotados[i]){ //&& !explotados[i]){
 			puntos += globos[i]->getPuntos();
 		}
 	}
@@ -121,8 +120,9 @@ void juegoPG::onClick(int &pmx, int &pmy){
 //recorre todos los globos actualizandolos y comprobando si se han desinflado o explotado, y por lo tanto no son visibles
 void juegoPG::update() {
 	for (int i = 0; i < dim; i++){
-		if (globos[i]->update()){ //REVISAR
+		if (globos[i]->update() && !explotados[i]){ //REVISAR
 			numG--;
+			explotados[i] = true;
 		}
 	}
 

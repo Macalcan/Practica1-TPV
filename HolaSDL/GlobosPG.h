@@ -13,6 +13,7 @@ public:
 	~GlobosPG();
 private:
 
+	bool daTrue;
 	TexturasSDL* imagen;
 	int puntos;
 	bool explotado;

@@ -3,7 +3,7 @@
 #include "GlobosPG.h"
 #include <vector>
 
-const int dim = 5; //dimension del array de los globos
+const int dim = 7; //dimension del array de los globos
 
 const int ancho = 550; //dimensiones de la ventana del juego
 const int alto = 600;

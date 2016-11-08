@@ -18,7 +18,7 @@ GlobosPG::GlobosPG(TexturasSDL* img, int &px, int &py)
 	puntos = 5;
 
 	inflado = 100;
-
+	daTrue = false;
 	/*//medidas del globo
 	balloon.h = alto;
 	balloon.w = ancho;
@@ -37,8 +37,13 @@ void GlobosPG::draw(SDL_Renderer* pRenderer)const{
 bool GlobosPG::onClick(int &pmx, int &pmy){
 
 	//comprueba si se ha explotado el globo en el rectangulo de la imagen
-	if (pmx >= x && pmx <= (x + ancho) && pmy >= y && pmy <= (y + alto))
+	//if (explotado)
+		//return false;
+	if (!invisible && pmx >= x && pmx <= (x + ancho) && pmy >= y && pmy <= (y + alto)){
+		//invisible = true;
 		return explotado = true;
+	}
+	else return false;
 
 
 }
@@ -49,13 +54,15 @@ bool GlobosPG::update(){
 	//puntos++;
 	alto -= 5;
 	ancho -= 5;
+	bool exploded = false;
 	//si se ha deshinchado o se ha explotado el globo ya no sera visible 
-	if (inflado == 0 || explotado){
-		return invisible = true;
-	}
-	else
-		return invisible = false;
+	//if (invisible)
+		//exploded = true;
 
+	 if (inflado == 0 && !invisible || explotado && !invisible)
+		return invisible = true;
+	 else
+		 return false;
 
 }
 //getter de puntos del globo
