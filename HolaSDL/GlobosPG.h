@@ -9,10 +9,11 @@ public:
 	bool onClick(int &pmx, int &pmy);
 	void draw(SDL_Renderer* pRenderer) const;
 	int getPuntos();
-	bool getInvisible();
 	bool update();
 	~GlobosPG();
-private: 
+private:
+
+	TexturasSDL* imagen;
 	int puntos;
 	bool explotado;
 	int alto;

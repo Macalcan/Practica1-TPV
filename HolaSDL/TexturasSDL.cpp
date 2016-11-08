@@ -16,6 +16,7 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 	bool carga = true; //Suponemos que la imagen se ha cargado correctamente
 	//Carga de la imagen
 	pTempSurface = loadFile(nombArch); //carga la superficie del archivo y es apuntada por nuestra superficie
+
 	if (pTempSurface == nullptr)
 	{
 		cout << "Imposible cargar el archivo" << nombArch << "! \nSDL Error: " << SDL_GetError() << "\n";
@@ -26,26 +27,21 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 		pTextura = SDL_CreateTextureFromSurface(pRenderer, pTempSurface); //Se crea una textura a partir de nuestra superficie
 		SDL_FreeSurface(pTempSurface);//liberamos la superficie porque se ha cargado la textura
 		carga = pTextura != nullptr;
+		alto = pTempSurface->h;
+		ancho = pTempSurface->w;
 	}
+
 	return carga;
 }
 //--------------------------------------------------------------------------------//
 SDL_Texture* TexturasSDL::getTextura(){
 	return pTextura;
 }
-void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& Winrect){
-	SDL_Rect rect;//dimensiones de la textura REVISAR
-	rect.h = 0;
-	rect.w = 0;
-	rect.x = 0;
-	rect.y = 0;
+void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& rect){
+	SDL_Rect tRect;
+	tRect = { 0, 0, alto, ancho };
+	SDL_RenderCopy(pRenderer, pTextura, &tRect, &rect);
 
-	//Clear the window to background color 
-	SDL_RenderClear(pRenderer);
-
-	SDL_RenderCopy(pRenderer, pTextura, &rect, &Winrect);
-	//Show the window
-	SDL_RenderPresent(pRenderer);
 }
 //--------------------------------------------------------------------------------//
 SDL_Surface* TexturasSDL::loadFile(string file)

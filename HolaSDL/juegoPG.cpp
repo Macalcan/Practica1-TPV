@@ -6,18 +6,18 @@ using namespace std;
 
 juegoPG::juegoPG()
 {
-
+	srand(SDL_GetTicks());
 	ptexture = nullptr;
 	SDL_Window * pWindow = nullptr;
 	SDL_Renderer * pRenderer = nullptr;
-
 
 	error = false;
 	exit = false;
 	gameOver = false;
 	puntos = 0;
-	initGlobos();
 	initSDL();
+	initGlobos();
+
 
 }
 //--------------------------------------------------------------------------------//
@@ -52,22 +52,25 @@ bool juegoPG::initSDL() {
 }
 //--------------------------------------------------------------------------------//
 bool juegoPG::initGlobos() {
-	bool addTexture = true; //REVISAR 
-	//declaras variables aleatorias x e y
-	int x = 0; //tendran que ser aleatorias y meter en el for cuando sean random
-	int y = 0; //tendran que ser aleatorias
+	//declaras variables aleatorias x e y que indican la posicion de cada globo
+	int x;
+	int y;
 	ptexture = new TexturasSDL;
-	string nombre = { "..\\bmps\\globoN.png" }; //comrpobar que no se tenga que poner la ruta
+	string nombre = { "..\\bmps\\globoN.png" };
 	ptexture->load(pRenderer, nombre);
 
-	//si se hace con un array globosPg g = new GlobosPG [text, x, y]
+
 	for (int i = 0; i < dim; i++){
+		x = rand() % 450;
+		y = rand() % 450;
 		globos[i] = new GlobosPG(ptexture, x, y);
+		explotados[i] = false;
 	}
 
 
+
 	numG = dim; //numero total de globos al principio del juego
-	return true;
+	return (ptexture != nullptr);
 }
 
 //--------------------------------------------------------------------------------//
@@ -83,8 +86,9 @@ void juegoPG::closeSDL() {
 //--------------------------------------------------------------------------------//
 void juegoPG::freeGlobos() {
 	//destruye el array de los globos
-	delete globos[0];
-	ptexture ->~TexturasSDL();
+	for (int i = 0; i < dim; i++)
+		delete globos[i];
+	delete(ptexture);
 
 }
 //--------------------------------------------------------------------------------//
@@ -92,19 +96,23 @@ void juegoPG::freeGlobos() {
 //en caso de que el globo lo sea se dibuja con draw(pRenderer), pRenderer está declarado arriba pero no asginado
 void juegoPG::render()const {
 
+	SDL_RenderClear(pRenderer);
+
 	for (int i = 0; i < dim; i++){
-		if (globos[i]->getInvisible()){
-			globos[i]->draw(pRenderer);
-		}
+		globos[i]->draw(pRenderer);
 	}
+
+	//Show the window
+	SDL_RenderPresent(pRenderer);
 }
 //--------------------------------------------------------------------------------//
 //comprueba si al hacer click ha explotado el globo a traves del metodo onClick de GlobosPG y si lo ha explotado saca los puntos del globo y los suma
 //a los puntos conseguidos en total
 void juegoPG::onClick(int &pmx, int &pmy){
 
-	for (int i = 0; i < numG; i++){ //revisar
-		if (globos[i]->onClick(pmx, pmy)){
+	for (int i = 0; i < dim; i++){ //revisar
+		if (globos[i]->onClick(pmx, pmy) && !explotados[i]){
+			explotados[i] = true;
 			puntos += globos[i]->getPuntos();
 		}
 	}
@@ -112,14 +120,13 @@ void juegoPG::onClick(int &pmx, int &pmy){
 //--------------------------------------------------------------------------------//
 //recorre todos los globos actualizandolos y comprobando si se han desinflado o explotado, y por lo tanto no son visibles
 void juegoPG::update() {
-	for (int i = 0; i < numG; i++){
+	for (int i = 0; i < dim; i++){
 		if (globos[i]->update()){ //REVISAR
 			numG--;
-			delete globos[i];
 		}
 	}
 
-	if (numG <= 0)
+	if (numG == 0)
 		gameOver = true;
 	//actualizacion del numero de globos activos
 
@@ -157,6 +164,8 @@ void juegoPG::run()
 			render();
 			handle_event();
 		}
+
+		render();
 		if (exit) cout << "Exit \n";
 		else cout << "Has obtenido " << puntos << " puntos \n";
 		SDL_Delay(1000); //cin.get();
@@ -171,7 +180,6 @@ juegoPG::~juegoPG()
 {
 	closeSDL();
 	freeGlobos();
-	ptexture = nullptr;
 	pWindow = nullptr;
 	pRenderer = nullptr;
 }
