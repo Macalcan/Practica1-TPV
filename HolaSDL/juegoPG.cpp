@@ -126,8 +126,8 @@ void juegoPG::update() {
 		}
 	}
 
-	if (numG == 0)
-		gameOver = true;
+	//if (numG == 0)
+	//gameOver = true;
 	//actualizacion del numero de globos activos
 
 
@@ -168,7 +168,6 @@ void juegoPG::run()
 				buffer += to_string(puntos);
 				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Has terminado!!", buffer.c_str(), nullptr);
 				gameOver = true;
-
 			}
 		}
 

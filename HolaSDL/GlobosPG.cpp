@@ -34,30 +34,42 @@ void GlobosPG::draw(SDL_Renderer* pRenderer)const{
 	}
 }
 //--------------------------------------------------------------------------------//
-bool GlobosPG::onClick(int &pmx, int &pmy) {
+bool GlobosPG::onClick(int &pmx, int &pmy){
 
-		if (!invisible && pmx >= x && pmx <= (x + ancho) && pmy >= y && pmy <= (y + alto)) {
-				invisible = true;
-			return true;
+	//comprueba si se ha explotado el globo en el rectangulo de la imagen
+	//if (explotado)
+	//return false;
+	if (!invisible && pmx >= x && pmx <= (x + ancho) && pmy >= y && pmy <= (y + alto)){
+		//invisible = true;
+		return explotado = true;
 	}
 	else return false;
+
+
 }
 //--------------------------------------------------------------------------------//
 bool GlobosPG::update(){
 	//!!!!!!!!!!!!!!!!!!! mirar si estas lineas han de ir dentro del if else (en el else) o no
-	if (inflado == 0 && !invisible || explotado && !invisible)
-		return true;
-	else {
+	//puntos++;
+
+	//si se ha deshinchado o se ha explotado el globo ya no sera visible 
+	if (inflado == 0 || explotado)
+		return invisible = true;
+	else{
 		if (rand() % 100 < PVIS)
 			invisible = false;
-		else invisible = true;
-		inflado -= 5;
-		alto -= 5;
-		ancho -= 5;
-		if (inflado == 0) {
-			return false;
+		else
+			invisible = true;
+
+		if (rand() % 100 < PDES){
+			inflado -= 10; //disminuye el tamaño del globo
+			alto -= 10;
+			ancho -= 10;
+			puntos += 2;
 		}
+		return false;
 	}
+
 }
 //getter de puntos del globo
 int GlobosPG::getPuntos(){

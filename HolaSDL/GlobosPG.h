@@ -12,14 +12,10 @@ public:
 	bool update();
 	~GlobosPG();
 private:
-
-	bool daTrue;
-	TexturasSDL* imagen;
 	static const int PVIS = 70;
 	static const int PDES = 30;
-	static const int DT = 5;
-	static const int AP = 5;
-	static const int TAMAÑO = 100;
+	bool daTrue;
+	TexturasSDL* imagen;
 	int puntos;
 	bool explotado;
 	int alto;
