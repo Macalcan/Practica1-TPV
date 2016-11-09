@@ -4,7 +4,7 @@
 // Practica realizada por Blanca Macazaga Zuazo y Adrián Alcántara Delgado
 #include <vector>
 
-const int dim = 7; //dimension del array de los globos
+const int dim = 10; //dimension del array de los globos
 
 const int ancho = 550; //dimensiones de la ventana del juego
 const int alto = 600;
@@ -15,8 +15,8 @@ public:
 	void run();
 	~juegoPG();
 private:
-	bool explotados[dim];
-	bool initSDL();
+	bool explotados[dim]; //array para saber que globos han sido explotados o desinflados
+	bool initSDL(); 
 	void closeSDL();
 	bool initGlobos();
 	void freeGlobos();
@@ -25,12 +25,13 @@ private:
 	void update();
 	void handle_event();
 	int puntos;
+	bool initFondo();
 	bool error, gameOver, exit;
 	SDL_Window* pWindow;
 	SDL_Renderer* pRenderer;
 
 	GlobosPG* globos[dim]; //array de los globos
-	TexturasSDL* ptexture;
+	TexturasSDL* ptexture [3]; //array de texturas usadas en el juego
 	int numG; //numero de globos
 };
 

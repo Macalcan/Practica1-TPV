@@ -8,16 +8,21 @@ using namespace std;
 juegoPG::juegoPG()
 {
 	srand(SDL_GetTicks());
-	ptexture = nullptr;
+	ptexture [0] = nullptr; //texturas de los globos
+	ptexture [1] = nullptr;
+	ptexture[2] = nullptr; //textura del fondo
+
 	SDL_Window * pWindow = nullptr;
 	SDL_Renderer * pRenderer = nullptr;
 
-	error = false;
-	exit = false;
-	gameOver = false;
-	puntos = 0;
+	error = false; //si hay un error se pondrá a true
+	exit = false; //si se sale del juego se pondrá a true
+	gameOver = false; //si se acaba el juego se pondrá a true
+	puntos = 0; //puntos al comenzar el juego
 	initSDL();
 	initGlobos();
+	initFondo();
+	
 }
 //--------------------------------------------------------------------------------//
 bool juegoPG::initSDL() {
@@ -48,23 +53,37 @@ bool juegoPG::initSDL() {
 	return carga;
 }
 //--------------------------------------------------------------------------------//
+//crea el fondo
+bool juegoPG::initFondo(){
+	ptexture[2] = new TexturasSDL;
+	string file = { "..\\bmps\\sky.jpg" };
+	ptexture[2]->load(pRenderer, file);
+	return (ptexture[2] != nullptr);
+}
 bool juegoPG::initGlobos() {
 	//declaras variables aleatorias x e y que indican la posicion de cada globo
 	int x;
 	int y;
-	ptexture = new TexturasSDL;
+	//inicializa las texturas de los globos
+	for (int j = 0; j < 2; j++){
+		ptexture [j] = new TexturasSDL;
+	}
+	
+	//carga las texturas de los globos
 	string nombre = { "..\\bmps\\globoN.png" };
-	ptexture->load(pRenderer, nombre);
+	ptexture[0]->load(pRenderer, nombre);
+	nombre = {"..\\bmps\\globoM.png"};
+	ptexture[1]->load(pRenderer, nombre);
 
 	for (int i = 0; i < dim; i++){//creamos un globo en cada vuelta en una posicion aleatoria en el rectangulo de la ventana
 		x = rand() % 450;
 		y = rand() % 450;
-		globos[i] = new GlobosPG(ptexture, x, y);
-		explotados[i] = false;
+		globos[i] = new GlobosPG(ptexture[i%2], x, y); //cada globo tendrá la textura 0 o la textura 1
+		explotados[i] = false; //aun no ha sido explotado
 	}
 
 	numG = dim; //numero total de globos al principio del juego
-	return (ptexture != nullptr);
+	return (ptexture[0] != nullptr && ptexture[1] != nullptr);
 }
 
 //--------------------------------------------------------------------------------//
@@ -82,7 +101,9 @@ void juegoPG::freeGlobos() {
 	//destruye el array de los globos
 	for (int i = 0; i < dim; i++)
 		delete globos[i];
-	delete(ptexture);
+	//destruye las texturas de los globos
+	delete(ptexture[0]);
+	delete(ptexture[1]);
 
 }
 //--------------------------------------------------------------------------------//
@@ -91,8 +112,12 @@ void juegoPG::freeGlobos() {
 void juegoPG::render()const {
 
 	SDL_RenderClear(pRenderer); //"limpia" el render donde vamos a dibujar el siguiente frame
+	
+	SDL_Rect rect; //rect para el fondo
+	rect = {0, 0, ancho, alto};
+	ptexture[2]->draw(pRenderer, rect); //dibuja el fondo
 
-	for (int i = 0; i < dim; i++){
+	for (int i = 0; i < dim; i++){ //dibuja los globos
 		globos[i]->draw(pRenderer);
 	}
 
@@ -176,6 +201,7 @@ juegoPG::~juegoPG()
 {
 	closeSDL();
 	freeGlobos();
+	ptexture[2] = nullptr;
 	pWindow = nullptr;
 	pRenderer = nullptr;
 }

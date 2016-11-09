@@ -10,6 +10,7 @@ TexturasSDL::TexturasSDL()
 	SDL_Texture* pTextura = nullptr; //inicializamos el puntero que apunta a la textura de nuestro globo a null porque todavía no tenemos textura
 }
 //--------------------------------------------------------------------------------//
+//carga un archivo de imagen en una textura
 bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 {
 	//El archivo de imagen que se carga
@@ -35,9 +36,7 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch)
 	return carga;
 }
 //--------------------------------------------------------------------------------//
-SDL_Texture* TexturasSDL::getTextura(){
-	return pTextura;
-}
+//dibuja las texturas
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& rect){
 	SDL_Rect tRect;
 	tRect = { 0, 0, alto, ancho };
@@ -45,6 +44,7 @@ void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& rect){
 
 }
 //--------------------------------------------------------------------------------//
+//carga una imagen en una superficie
 SDL_Surface* TexturasSDL::loadFile(string file)
 {
 	SDL_Surface* archivo = nullptr;
@@ -52,9 +52,9 @@ SDL_Surface* TexturasSDL::loadFile(string file)
 	return archivo;
 }
 //--------------------------------------------------------------------------------//
+//destructora de la textura
 TexturasSDL::~TexturasSDL()
 {
-	//destruimos la textura y liberamos el puntero
 	SDL_DestroyTexture(pTextura);
 	pTextura = nullptr;
 }

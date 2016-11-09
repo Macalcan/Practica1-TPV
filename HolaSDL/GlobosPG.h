@@ -13,18 +13,17 @@ public:
 	bool update();
 	~GlobosPG();
 private:
-	static const int PVIS = 70;
+	static const int PVIS = 70; 
 	static const int PDES = 30;
-	bool daTrue;
 	TexturasSDL* imagen;
-	int puntos;
-	bool explotado;
-	int alto;
-	int ancho;
-	int x;
-	int y;
-	int inflado;
-	bool invisible;
-	SDL_Rect balloon;
+	int puntos; //puntos del globo
+	bool explotado; //booleana para saber si el globo ha sido explotado
+	int alto; //alto del globo
+	int ancho; //ancho del globo
+	int x; //posicion x del globo
+	int y; //posicion y del globo
+	int inflado; //cuenta el "aire" del globo
+	bool invisible; //booleana de si es visible el globo o no
+	SDL_Rect balloon; //rect del globo
 };
 
