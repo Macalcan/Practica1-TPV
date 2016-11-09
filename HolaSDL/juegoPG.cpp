@@ -163,6 +163,13 @@ void juegoPG::run()
 
 			render();
 			handle_event();
+			if (numG == 0) {
+				string buffer = "Puntuacion: ";
+				buffer += to_string(puntos);
+				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Has terminado!!", buffer.c_str(), nullptr);
+				gameOver = true;
+
+			}
 		}
 
 		render();
