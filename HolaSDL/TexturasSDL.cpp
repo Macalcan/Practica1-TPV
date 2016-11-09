@@ -1,3 +1,4 @@
+// Practica realizada por Blanca Macazaga Zuazo y Adrián Alcántara Delgado
 #include "TexturasSDL.h"
 #include <iostream>
 #include <string>
@@ -46,9 +47,8 @@ void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& rect){
 //--------------------------------------------------------------------------------//
 SDL_Surface* TexturasSDL::loadFile(string file)
 {
-
 	SDL_Surface* archivo = nullptr;
-	archivo = IMG_Load(file.c_str());
+	archivo = IMG_Load(file.c_str());//cargamos el archivo con su nombre
 	return archivo;
 }
 //--------------------------------------------------------------------------------//

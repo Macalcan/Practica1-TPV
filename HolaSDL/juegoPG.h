@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "GlobosPG.h"
+// Practica realizada por Blanca Macazaga Zuazo y Adrián Alcántara Delgado
 #include <vector>
 
 const int dim = 7; //dimension del array de los globos

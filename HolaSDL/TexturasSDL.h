@@ -1,3 +1,4 @@
+// Practica realizada por Blanca Macazaga Zuazo y Adrián Alcántara Delgado
 #pragma once
 #include "SDL.h"
 #include <string>
@@ -12,8 +13,8 @@ public:
 	bool load(SDL_Renderer* pRenderer, string const& nombArch);
 	SDL_Texture* getTextura();
 private:
-	int alto;
-	int ancho;
+	int alto; //alto de la superficie de la textura
+	int ancho; //ancho de la superficie de la textura
 	SDL_Surface* loadFile(string file);
 	SDL_Texture* pTextura;
 };

@@ -1,3 +1,4 @@
+// Practica realizada por Blanca Macazaga Zuazo y Adrián Alcántara Delgado
 #include "GlobosPG.h"
 using namespace std;
 
@@ -10,8 +11,6 @@ GlobosPG::GlobosPG(TexturasSDL* img, int &px, int &py)
 	y = py;
 	imagen = img;//->getTextura();
 
-
-	//SDL_Renderer* pRender = img;
 	alto = ancho = 100;
 	explotado = false;
 	invisible = false;
@@ -19,11 +18,6 @@ GlobosPG::GlobosPG(TexturasSDL* img, int &px, int &py)
 
 	inflado = 100;
 	daTrue = false;
-	/*//medidas del globo
-	balloon.h = alto;
-	balloon.w = ancho;
-	balloon.x = x;
-	balloon.y = y;*/
 }
 //--------------------------------------------------------------------------------//
 void GlobosPG::draw(SDL_Renderer* pRenderer)const{
@@ -35,23 +29,14 @@ void GlobosPG::draw(SDL_Renderer* pRenderer)const{
 }
 //--------------------------------------------------------------------------------//
 bool GlobosPG::onClick(int &pmx, int &pmy){
-
 	//comprueba si se ha explotado el globo en el rectangulo de la imagen
-	//if (explotado)
-	//return false;
 	if (!invisible && pmx >= x && pmx <= (x + ancho) && pmy >= y && pmy <= (y + alto)){
-		//invisible = true;
 		return explotado = true;
 	}
 	else return false;
-
-
 }
 //--------------------------------------------------------------------------------//
 bool GlobosPG::update(){
-	//!!!!!!!!!!!!!!!!!!! mirar si estas lineas han de ir dentro del if else (en el else) o no
-	//puntos++;
-
 	//si se ha deshinchado o se ha explotado el globo ya no sera visible 
 	if (inflado == 0 || explotado)
 		return invisible = true;
@@ -65,11 +50,10 @@ bool GlobosPG::update(){
 			inflado -= 10; //disminuye el tamaño del globo
 			alto -= 10;
 			ancho -= 10;
-			puntos += 2;
+			puntos += 2;//aumentan los puntos que se recibe al explotar el globo cuanto menos inflado este
 		}
 		return false;
 	}
-
 }
 //getter de puntos del globo
 int GlobosPG::getPuntos(){

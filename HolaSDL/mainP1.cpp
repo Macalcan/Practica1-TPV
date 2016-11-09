@@ -1,3 +1,4 @@
+// Practica realizada por Blanca Macazaga Zuazo y Adrián Alcántara Delgado
 #include "SDL.h"  // Para utilizar SDL
 #include <iostream>  // la consola: cin / cout
 #include "juegoPG.h"

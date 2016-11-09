@@ -1,3 +1,4 @@
+// Practica realizada por Blanca Macazaga Zuazo y Adrián Alcántara Delgado
 #pragma once
 #include "SDL.h"
 #include "TexturasSDL.h"

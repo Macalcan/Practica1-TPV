@@ -1,4 +1,5 @@
-﻿#include "juegoPG.h"
+﻿// Practica realizada por Blanca Macazaga Zuazo y Adrián Alcántara Delgado
+#include "juegoPG.h"
 #include "TexturasSDL.h"
 #include <iostream>
 #include "GlobosPG.h"
@@ -17,15 +18,11 @@ juegoPG::juegoPG()
 	puntos = 0;
 	initSDL();
 	initGlobos();
-
-
 }
 //--------------------------------------------------------------------------------//
 bool juegoPG::initSDL() {
 
-
 	bool carga = true; //si carga es false no se puede cargar la ventana inicializando SDL
-
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		cout << "¡SDL no se ha podido iniciar! \nSDL_Error: " << SDL_GetError() << '\n';
@@ -59,15 +56,12 @@ bool juegoPG::initGlobos() {
 	string nombre = { "..\\bmps\\globoN.png" };
 	ptexture->load(pRenderer, nombre);
 
-
-	for (int i = 0; i < dim; i++){
+	for (int i = 0; i < dim; i++){//creamos un globo en cada vuelta en una posicion aleatoria en el rectangulo de la ventana
 		x = rand() % 450;
 		y = rand() % 450;
 		globos[i] = new GlobosPG(ptexture, x, y);
 		explotados[i] = false;
 	}
-
-
 
 	numG = dim; //numero total de globos al principio del juego
 	return (ptexture != nullptr);
@@ -96,7 +90,7 @@ void juegoPG::freeGlobos() {
 //en caso de que el globo lo sea se dibuja con draw(pRenderer), pRenderer está declarado arriba pero no asginado
 void juegoPG::render()const {
 
-	SDL_RenderClear(pRenderer);
+	SDL_RenderClear(pRenderer); //"limpia" el render donde vamos a dibujar el siguiente frame
 
 	for (int i = 0; i < dim; i++){
 		globos[i]->draw(pRenderer);
@@ -110,8 +104,8 @@ void juegoPG::render()const {
 //a los puntos conseguidos en total
 void juegoPG::onClick(int &pmx, int &pmy){
 
-	for (int i = 0; i < dim; i++){ //revisar
-		if (globos[i]->onClick(pmx, pmy) && !explotados[i]){ //&& !explotados[i]){
+	for (int i = 0; i < dim; i++){
+		if (globos[i]->onClick(pmx, pmy) && !explotados[i]){
 			puntos += globos[i]->getPuntos();
 		}
 	}
@@ -119,18 +113,12 @@ void juegoPG::onClick(int &pmx, int &pmy){
 //--------------------------------------------------------------------------------//
 //recorre todos los globos actualizandolos y comprobando si se han desinflado o explotado, y por lo tanto no son visibles
 void juegoPG::update() {
-	for (int i = 0; i < dim; i++){
-		if (globos[i]->update() && !explotados[i]){ //REVISAR
+	for (int i = 0; i < dim; i++) {
+		if (globos[i]->update() && !explotados[i]) { //si se ha exlpotado el globo se determina en nuestro array de booleanos y desciende el numero de globos
 			numG--;
 			explotados[i] = true;
 		}
 	}
-
-	//if (numG == 0)
-	//gameOver = true;
-	//actualizacion del numero de globos activos
-
-
 }
 //--------------------------------------------------------------------------------//
 void juegoPG::handle_event() {
@@ -144,7 +132,6 @@ void juegoPG::handle_event() {
 			}
 		}
 	}
-
 }
 //--------------------------------------------------------------------------------//
 void juegoPG::run()
@@ -153,6 +140,9 @@ void juegoPG::run()
 		Uint32 MSxUpdate = 500;
 		cout << "Play \n";
 		Uint32 lastUpdate = SDL_GetTicks();
+		string puntuacion = "preparado!!?? ";
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Practica1", puntuacion.c_str(), nullptr);
+		
 		render();
 		handle_event();
 		while (!exit && !gameOver){
@@ -163,10 +153,10 @@ void juegoPG::run()
 
 			render();
 			handle_event();
-			if (numG == 0) {
-				string buffer = "Puntuacion: ";
-				buffer += to_string(puntos);
-				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Has terminado!!", buffer.c_str(), nullptr);
+			if (numG == 0) { // Cuando el juego acaba aparece una ventana con la puntuacion que hemos conseguido y con un boton OK que cuando se pulsa se cierran las consolas
+				string puntuacion = "Puntuacion: ";
+				puntuacion += to_string(puntos);
+				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Has terminado!!", puntuacion.c_str(), nullptr);
 				gameOver = true;
 			}
 		}
@@ -174,7 +164,7 @@ void juegoPG::run()
 		render();
 		if (exit) cout << "Exit \n";
 		else cout << "Has obtenido " << puntos << " puntos \n";
-		SDL_Delay(1000); //cin.get();
+		SDL_Delay(1000);
 	}
 
 
