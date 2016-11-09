@@ -36,6 +36,15 @@ void GlobosPG::draw(SDL_Renderer* pRenderer)const{
 //--------------------------------------------------------------------------------//
 bool GlobosPG::onClick(int &pmx, int &pmy) {
 
+		if (!invisible && pmx >= x && pmx <= (x + ancho) && pmy >= y && pmy <= (y + alto)) {
+				invisible = true;
+			return true;
+	}
+	else return false;
+}
+//--------------------------------------------------------------------------------//
+bool GlobosPG::update(){
+	//!!!!!!!!!!!!!!!!!!! mirar si estas lineas han de ir dentro del if else (en el else) o no
 	if (inflado == 0 && !invisible || explotado && !invisible)
 		return true;
 	else {
@@ -49,19 +58,6 @@ bool GlobosPG::onClick(int &pmx, int &pmy) {
 			return false;
 		}
 	}
-}
-//--------------------------------------------------------------------------------//
-bool GlobosPG::update(){
-	//!!!!!!!!!!!!!!!!!!! mirar si estas lineas han de ir dentro del if else (en el else) o no
-	inflado -= 5; //disminuye el tamaño del globo
-	alto -= 5;
-	ancho -= 5;
-
-	 if (inflado == 0 && !invisible || explotado && !invisible)
-		return invisible = true;
-	 else
-		 return false;
-
 }
 //getter de puntos del globo
 int GlobosPG::getPuntos(){
